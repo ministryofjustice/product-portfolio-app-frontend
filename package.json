@@ -10,8 +10,5 @@
   "license": "MIT",
   "devDependencies": {
     "jest": "^25.1.0"
-  },
-  "dependencies": {
-    "express": "^4.17.1"
   }
 }
