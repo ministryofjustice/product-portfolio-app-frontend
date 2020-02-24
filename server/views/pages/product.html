@@ -1,0 +1,93 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+	<h1 class="govuk-heading-l" style="margin-bottom:15px;">{{ data.name }}</h1>
+
+	<div class="govuk-grid-row">
+		<section class="govuk-grid-column-two-thirds">
+
+			<p class="govuk-body">{{ data.description }}</p>
+
+			<div class="location govuk-body">Based in <strong>{{ data.location }}</strong></div>
+
+			<h2 class="govuk-heading-m">Project history</h2>
+			<div class="phase-history">
+				{% for phase in phase_order %}
+					{% if data["phase-history"][phase].length %}
+					<div class="phase-history-item border-{{phase}} txt-{{phase}}">
+						<h3 class="govuk-heading-s"><a href="#" class="tag tag-history {{phase}}">{{phase}}</a></h3>
+						{% for item in data["phase-history"][phase] %}
+							<p class="govuk-body">
+								{{ item.label }} &mdash; {{item.date}}
+								{% if item.report %}
+									<br />(<a href="{{ item.report }}">assessment report</a>)
+								{% endif %}
+							</p>
+						{% endfor %}
+					</div>
+					{% endif %}
+				{% endfor %}
+			</div>
+		</section>
+		<section class="govuk-grid-column-one-third">
+
+			<div class="phase-circle">
+				<p class="circle {{ data.phase | lower }}"></p>
+				{% if data.phase_modifier %}<p class="phase_modifier">{{ data.phase_modifier }}</p>{% endif %}
+				<p class="circle-label govuk-body">{{ data.phase | title }}</p>
+			</div>
+
+			{% if data.liveservice %}
+			<br />
+			<p class="govuk-body"><a href="{{ data.liveservice }}">Live service</a></p>
+			{% endif %}
+			<hr />
+
+			<h3 class="govuk-heading-s">Service Owner</h3>
+
+			{% if data.service_man_slack %}
+				<a href="{{ data.service_man_slack }}" target="_blank" title="{{ data.service_man | default('Not set') }}">
+					<p class="govuk-body">{{ data.service_man | default('Not set') }}</p>
+				</a>
+			{% else %}
+				<p class="govuk-body">{{ data.service_man | default('Not set') }}</p>
+			{% endif %}
+
+			<h3 class="govuk-heading-s">Product Owner</h3>
+
+			{% if data.product_man_slack %}
+				<a href="{{ data.product_man_slack }}" target="_blank" title="{{ data.product_man | default('Not set') }}">
+					<p class="govuk-body">{{ data.product_man | default('Not set') }}</p>
+				</a>
+			{% else %}
+				<p class="govuk-body">{{ data.product_man | default('Not set') }}</p>
+			{% endif %}
+
+			<h3 class="govuk-heading-s">Slack</h3>
+
+			{% if data.team_slack %}
+				<a href="{{ data.team_slack }}" target="_blank" title="Team Slack channel">
+					<p class="govuk-body">Team Slack channel</p>
+				</a>
+			{% endif %}
+
+			<hr />
+
+			<h3 class="govuk-heading-s">Upcoming show &lsquo;n&rsquo; tells</h3>
+			<ul>
+				{% for item in data.showntells %}
+				  <li style=" govuk-bodymargin-bottom:10px">
+						{{ item | formatDate("h:mma ddd") }} &mdash;
+				  	{{ item | formatDate("Do MMMM") }}
+					</li>
+				{% endfor %}
+				<li></li>
+			</ul>
+		</section>
+	</div>
+</main>
+
+{% endblock %}
