@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const nunjucks = require('nunjucks')
 const helmet = require('helmet')
+const sassMiddleware = require('node-sass-middleware')
 
 const createIndexRouter = require('./routes/index')
 
@@ -10,7 +11,9 @@ module.exports = function createApp () { // eslint-disable-line no-shadow
 
   nunjucks.configure(
     [
-      path.join(__dirname, 'views')
+      path.join(__dirname, 'views'),
+      path.join(__dirname, 'views/pages'),
+      'node_modules/govuk-frontend/govuk'
     ], {
       autoescape: true,
       express: app
@@ -20,6 +23,14 @@ module.exports = function createApp () { // eslint-disable-line no-shadow
   app.use(helmet())
   app.use(express.json())
   app.use(express.urlencoded({ extended: false }))
+  app.use(sassMiddleware({
+    src: path.join(__dirname, 'public'),
+    dest: path.join(__dirname, 'public'),
+    debug: false,
+    outputStyle: 'compressed'
+  }))
+  app.use(express.static(path.join(__dirname, 'public')))
+  app.use('/assets', express.static(path.join(__dirname, 'node_modules/govuk-frontend/govuk/assets')))
   app.use('/', createIndexRouter())
   return app
 }

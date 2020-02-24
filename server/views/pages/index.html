@@ -1,1 +1,73 @@
-hello world
+{% extends "layout.html" %}
+
+{% block content %}
+
+<main id="content" role="main">
+
+	<p style="margin-top:30px;" class="govuk-body">
+		These are all the things we're doing, <a href="/">order by theme</a> or <a href="/location/">order by location</a></p>
+
+	<div class="govuk-grid-row">
+		<section class="column-fifth">
+			<div class="tag backlog govuk-heading-m">Backlog</div>
+			<div class="big_number txt-backlog">{{ counts.backlog }}</div>
+		</section>
+		<section class="column-fifth">
+			<div class="tag discovery govuk-heading-m">Discovery</div>
+			<div class="big_number txt-discovery">{{ counts.discovery }}</div>
+		</section>
+		<section class="column-fifth">
+			<div class="tag alpha govuk-heading-m">Alpha</div>
+			<div class="big_number txt-alpha">{{ counts.alpha }}</div>
+		</section>
+		<section class="column-fifth">
+			<div class="tag beta govuk-heading-m">Beta</div>
+			<div class="big_number txt-beta">{{ counts.beta }}</div>
+		</section>
+		<section class="column-fifth">
+			<div class="tag live govuk-heading-m">Live</div>
+			<div class="big_number txt-live">{{ counts.live }}</div>
+		</section>
+	</div>
+
+	{#
+		theme_order & phase_order are set in routes.js
+		so them can be used in multiple pages.
+	#}
+
+	{% for theme in themes %}
+
+		{% set themeProjects = data[theme] %}
+		<h2 class="heading-large service-area">{{ theme }}</h2>
+
+		<div class="govuk-grid-row">
+			{% for phase in phases %}
+
+			<section class="column-fifth">
+			{% if themeProjects[phase] %}
+
+				<ul class="link-list border-{{phase}}">
+				{% for project in themeProjects[phase] %}
+					<li>
+						<a href="/projects/{{ project.id }}">
+							{{ project.name }}
+						</a>
+					</li>
+				{% endfor %}
+				</ul>
+
+			{% else %}
+				&nbsp;
+			{% endif %}
+			</section>
+
+		{% endfor %}
+		</div>
+
+	{% endfor %}
+
+	<p style="margin-top: 100px" class="govuk-body">Last updated 17th Oct 2018. <!-- <a href="/about">About the digital portfolio</a> --><p>
+
+</main>
+
+{% endblock %}
