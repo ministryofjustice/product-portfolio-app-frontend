@@ -7,9 +7,8 @@ const sassMiddleware = require('node-sass-middleware')
 const createIndexRouter = require('./routes/index')
 const createProductRouter = require('./routes/product')
 
-module.exports = function createApp () { // eslint-disable-line no-shadow
+module.exports = function createApp ({ productService }) { // eslint-disable-line no-shadow
   const app = express()
-
   nunjucks.configure(
     [
       path.join(__dirname, 'views'),
@@ -32,7 +31,7 @@ module.exports = function createApp () { // eslint-disable-line no-shadow
   }))
   app.use(express.static(path.join(__dirname, 'public')))
   app.use('/assets', express.static(path.join(__dirname, 'node_modules/govuk-frontend/govuk/assets')))
-  app.use('/', createIndexRouter())
-  app.use('/', createProductRouter())
+  app.use('/', createIndexRouter({ productService }))
+  app.use('/', createProductRouter({ productService }))
   return app
 }

@@ -1,6 +1,6 @@
 const express = require('express')
 
-module.exports = function product () {
+module.exports = function product ({ productService }) {
   const router = express.Router()
   router.get('/product/:id', (req, res) => {
     console.log('GET product')
