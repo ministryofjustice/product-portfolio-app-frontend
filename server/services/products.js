@@ -1,5 +1,5 @@
 module.exports = function products (contentfulClient) {
-  async function getContent (contentType) {
+  async function getEntries (contentType) {
     try {
       const entries = await contentfulClient.getEntries({
         content_type: contentType
@@ -12,6 +12,6 @@ module.exports = function products (contentfulClient) {
   }
 
   return {
-    getContent
+    getEntries
   }
 }
