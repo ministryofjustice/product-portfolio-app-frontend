@@ -30,43 +30,24 @@
 		</section>
 	</div>
 
-	{#
-		theme_order & phase_order are set in routes.js
-		so them can be used in multiple pages.
-	#}
-
 	{% for theme in themes %}
-
-		{% set themeProjects = data[theme] %}
-		<h2 class="heading-large service-area">{{ theme }}</h2>
-
+		<h2 class="heading-large govuk-heading-m service-area">{{ theme.productTheme }}</h2>
 		<div class="govuk-grid-row">
-			{% for phase in phases %}
-
-			<section class="column-fifth">
-			{% if themeProjects[phase] %}
-
-				<ul class="link-list border-{{phase}}">
-				{% for project in themeProjects[phase] %}
-					<li>
-						<a href="/projects/{{ project.id }}">
-							{{ project.name }}
-						</a>
-					</li>
-				{% endfor %}
-				</ul>
-
-			{% else %}
-				&nbsp;
-			{% endif %}
-			</section>
-
-		{% endfor %}
+			{% for status in statuses %}
+				<section class="column-fifth">
+					<ul class="link-list border-{{status}}">
+						{% for product in products %}
+							{% if (status == product.productStatus) and (theme.productTheme == product.productTheme.fields.productTheme) %}
+								<li><a href="#" class="govuk-link" >{{ product.productName}}</a></li>
+							{% endif %}
+					{% endfor %}
+					</ul>
+				</section>
+			{% endfor %}
 		</div>
-
 	{% endfor %}
 
-	<p style="margin-top: 100px" class="govuk-body">Last updated 17th Oct 2018. <!-- <a href="/about">About the digital portfolio</a> --><p>
+	<p style="margin-top: 100px" class="govuk-body-xs">Last updated 17th Oct 2018. <!-- <a href="/about">About the digital portfolio</a> --><p>
 
 </main>
 
