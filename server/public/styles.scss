@@ -62,7 +62,7 @@
 .link-list {
   font-size:16px;
   margin-bottom:5px;
-  background-color:$govuk-link-hover-colour;
+  background-color:govuk-colour("light-grey");
   border-left:3px solid transparent;
   li {
     // margin-bottom:1em;
@@ -73,6 +73,7 @@
 .service-area {
   border-bottom:1px solid #ccc;
   margin-bottom:10px;
+  text-transform: capitalize;
 }
 
 .location {
@@ -111,11 +112,11 @@
 .border-live      {border-color:$live-colour;}
 .border-internal  {border-color:$black;}
 
-.circle.backlog   {background-color:$backlog-colour;}
-.circle.discovery {background-color:$discovery-colour;}
-.circle.alpha     {background-color:$alpha-colour;}
-.circle.beta      {background-color:$beta-colour;}
-.circle.live      {background-color:$live-colour;}
+.circle.Backlog   {background-color:$backlog-colour;}
+.circle.Discovery {background-color:$discovery-colour;}
+.circle.Alpha     {background-color:$alpha-colour;}
+.circle.Beta      {background-color:$beta-colour;}
+.circle.Live      {background-color:$live-colour;}
 
 .phase_modifier {
   font-size:16px;
