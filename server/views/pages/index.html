@@ -38,7 +38,7 @@
 					<ul class="link-list border-{{status}}">
 						{% for product in products %}
 							{% if (status == product.productStatus) and (theme.productTheme == product.productTheme.fields.productTheme) %}
-								<li><a href="#" class="govuk-link" >{{ product.productName}}</a></li>
+								<li><a href="product/{{ product.key }}" class="govuk-link" >{{ product.productName}}</a></li>
 							{% endif %}
 					{% endfor %}
 					</ul>
