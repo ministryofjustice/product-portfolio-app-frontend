@@ -112,11 +112,11 @@
 .border-live      {border-color:$live-colour;}
 .border-internal  {border-color:$black;}
 
-.circle.Backlog   {background-color:$backlog-colour;}
-.circle.Discovery {background-color:$discovery-colour;}
-.circle.Alpha     {background-color:$alpha-colour;}
-.circle.Beta      {background-color:$beta-colour;}
-.circle.Live      {background-color:$live-colour;}
+.circle.backlog   {background-color:$backlog-colour;}
+.circle.discovery {background-color:$discovery-colour;}
+.circle.alpha     {background-color:$alpha-colour;}
+.circle.beta      {background-color:$beta-colour;}
+.circle.live      {background-color:$live-colour;}
 
 .phase_modifier {
   font-size:16px;

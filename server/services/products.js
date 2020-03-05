@@ -10,8 +10,17 @@ module.exports = function products (contentfulClient) {
       console.log(error)
     }
   }
-
+  async function getEntry (id) {
+    try {
+      const entry = await contentfulClient.getEntry(id)
+      if (entry) return entry
+      console.log(`Error getting entry for ${id}.`)
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return {
+    getEntry,
     getEntries
   }
 }
