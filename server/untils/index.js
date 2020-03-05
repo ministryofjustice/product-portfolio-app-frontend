@@ -10,6 +10,14 @@ const formatRawProductData = data => {
   }))
 }
 
+const formatRawThemeData = data => {
+  return data.map(item => ({
+    key: item.sys.id,
+    productTheme: item.fields.productTheme
+  }))
+}
+
 module.exports = {
+  formatRawThemeData,
   formatRawProductData
 }
