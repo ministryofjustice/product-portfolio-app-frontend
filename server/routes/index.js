@@ -1,13 +1,21 @@
 const express = require('express')
-const formatRawProductData = require('util')
+const { formatRawProductData, formatRawThemeData } = require('../utils')
 
 module.exports = function index ({ productService }) {
   const router = express.Router()
   router.get('/', async (req, res) => {
-    const rawProducts = await productService.getProducts('product')
+    const rawProducts = await productService.getContent('product')
+    const rawThemes = await productService.getContent('themes')
     const products = formatRawProductData(rawProducts)
+    const statuses = ['backlog', 'discovery', 'alpha', 'beta', 'live']
+    const themes = formatRawThemeData(rawThemes)
     console.log('GET index')
-    res.render('pages/index', { products })
+    console.log(products)
+    res.render('pages/index', {
+      products,
+      statuses,
+      themes
+    })
   })
   return router
 }
