@@ -10,7 +10,6 @@ module.exports = function index ({ productService }) {
     const statuses = ['backlog', 'discovery', 'alpha', 'beta', 'live']
     const themes = formatRawThemeData(rawThemes)
     console.log('GET index')
-    console.log(products)
     res.render('pages/index', {
       products,
       statuses,
