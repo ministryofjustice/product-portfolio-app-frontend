@@ -30,8 +30,8 @@ module.exports = function createApp ({ productService }) { // eslint-disable-lin
     outputStyle: 'compressed'
   }))
   app.use(express.static(path.join(__dirname, 'public')))
-  app.use('/govuk-frontend', express.static(path.join(__dirname, '/node_modules/govuk-frontend/govuk')))
-  app.use('/assets', express.static(path.join(__dirname, '/node_modules/govuk-frontend/govuk/assets')))
+  app.use('/govuk-frontend', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk')))
+  app.use('/assets', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk/assets')))
 
   app.use('/', createIndexRouter({ productService }))
   app.use('/', createProductRouter({ productService }))
