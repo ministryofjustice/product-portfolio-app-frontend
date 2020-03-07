@@ -4,11 +4,14 @@ const nunjucks = require('nunjucks')
 const helmet = require('helmet')
 const sassMiddleware = require('node-sass-middleware')
 
+const cacheMiddleware = require('./middleware/cacheMiddleware')
+
 const createIndexRouter = require('./routes/index')
 const createProductRouter = require('./routes/product')
 
 module.exports = function createApp ({ productService }) { // eslint-disable-line no-shadow
   const app = express()
+  cacheMiddleware.attach(app)
   nunjucks.configure(
     [
       path.join(__dirname, 'views'),
