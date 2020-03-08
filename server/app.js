@@ -4,6 +4,8 @@ const nunjucks = require('nunjucks')
 const helmet = require('helmet')
 const sassMiddleware = require('node-sass-middleware')
 
+const appConfig = require('./config')
+
 const cacheMiddleware = require('./middleware/cacheMiddleware')
 
 const createIndexRouter = require('./routes/index')
@@ -26,12 +28,14 @@ module.exports = function createApp ({ productService }) { // eslint-disable-lin
   app.use(helmet())
   app.use(express.json())
   app.use(express.urlencoded({ extended: false }))
-  app.use(sassMiddleware({
-    src: path.join(__dirname, 'public'),
-    dest: path.join(__dirname, 'public'),
-    debug: false,
-    outputStyle: 'compressed'
-  }))
+  if (!appConfig.isProduction) {
+    app.use(sassMiddleware({
+      src: path.join(__dirname, 'public'),
+      dest: path.join(__dirname, 'public'),
+      debug: false,
+      outputStyle: 'compressed'
+    }))
+  }
   app.use(express.static(path.join(__dirname, 'public')))
   app.use('/govuk-frontend', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk')))
   app.use('/assets', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk/assets')))
