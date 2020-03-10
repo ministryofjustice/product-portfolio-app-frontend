@@ -5,5 +5,6 @@ module.exports = {
   appName: 'HMPPS Digital Products',
   space: process.env.SPACEID,
   accessToken: process.env.ACCESSTOKEN,
-  isProduction: production
+  isProduction: production,
+  staticResourceCacheDuration: 1
 }
