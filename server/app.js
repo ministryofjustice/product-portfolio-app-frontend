@@ -52,7 +52,9 @@ module.exports = function createApp ({ productService }) { // eslint-disable-lin
   app.use('/govuk-frontend', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk'), cacheControl))
   app.use('/assets', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk/assets'), cacheControl))
 
-  cacheMiddleware.attach(app)
+  if (!appConfig.isProduction) {
+    cacheMiddleware.attach(app)
+  }
 
   app.use('/', createIndexRouter({ productService }))
   app.use('/', createProductRouter({ productService }))
