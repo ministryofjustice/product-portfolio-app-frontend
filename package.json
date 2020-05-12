@@ -12,20 +12,20 @@
   "author": "Steven Wilson ",
   "license": "MIT",
   "devDependencies": {
-    "jest": "^25.1.0"
+    "jest": "^26.0.1"
   },
   "dependencies": {
-    "cache-manager": "^3.1.0",
+    "cache-manager": "^3.3.0",
     "compression": "^1.7.4",
-    "contentful": "^7.14.0",
+    "contentful": "^7.14.4",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "express-cache-middleware": "^1.0.1",
-    "govuk-frontend": "^3.5.0",
-    "helmet": "^3.21.2",
+    "govuk-frontend": "^3.6.0",
+    "helmet": "^3.22.0",
     "node-sass-middleware": "^0.11.0",
-    "nodemon": "^2.0.2",
-    "nunjucks": "^3.2.0"
+    "nodemon": "^2.0.3",
+    "nunjucks": "^3.2.1"
   },
   "nodemonConfig": {
     "restartable": "rs",
