@@ -15,6 +15,7 @@
     "jest": "^26.0.1"
   },
   "dependencies": {
+    "@contentful/rich-text-html-renderer": "^13.4.0",
     "cache-manager": "^3.3.0",
     "compression": "^1.7.4",
     "contentful": "^7.14.4",
