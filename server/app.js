@@ -2,6 +2,7 @@ const express = require('express')
 const path = require('path')
 const nunjucks = require('nunjucks')
 const helmet = require('helmet')
+const noCache = require('nocache')
 const compression = require('compression')
 
 const sassMiddleware = require('node-sass-middleware')
@@ -29,7 +30,7 @@ module.exports = function createApp ({ productService }) { // eslint-disable-lin
   app.set('port', process.env.PORT || 3000)
   app.set('view engine', 'html')
   app.use(helmet())
-  app.use(helmet.noCache()) // Don't cache dynamic resources
+  app.use(noCache()) // Don't cache dynamic resources
   app.use(compression())
 
   app.use(express.json())
