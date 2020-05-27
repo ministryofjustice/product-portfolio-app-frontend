@@ -1,0 +1,16 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: hmpps-product-portfolio-ingress
+spec:
+  tls:
+  - hosts:
+    - hmpps-product-portfolio-prod.apps.live-1.cloud-platform.service.justice.gov.uk
+  rules:
+  - host: hmpps-product-portfolio-prod.apps.live-1.cloud-platform.service.justice.gov.uk
+    http:
+      paths:
+      - path: /
+        backend:
+          serviceName: hmpps-product-portfolio-service
+          servicePort: 4567

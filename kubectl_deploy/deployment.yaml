@@ -1,0 +1,21 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: hmpps-product-portfolio
+spec:
+  strategy:
+    rollingUpdate:
+      maxSurge: 100%
+      maxUnavailable: 50%
+    type: RollingUpdate
+  replicas: 4
+  template:
+    metadata:
+      labels:
+        app: hmpps-product-portfolio
+    spec:
+      containers:
+      - name: rubyapp
+        image: 754256621582.dkr.ecr.eu-west-2.amazonaws.com/hmpps-product-portfolio/hmpps-product-portfolio:latest
+        ports:
+        - containerPort: 4567
