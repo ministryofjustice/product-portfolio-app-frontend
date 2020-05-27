@@ -1,5 +1,8 @@
 FROM node:12-alpine
 
+RUN addgroup -g 1001 -S appgroup && \
+    adduser -u 1001 -S appuser -G appgroup
+
 RUN apk add --no-cache git
 
 # Create app directory
@@ -20,4 +23,9 @@ COPY . .
 RUN apk del git
 
 EXPOSE 3000
+
+RUN chown -R appuser:appgroup /usr/src/app
+
+USER 1001
+
 CMD [ "npm", "start" ]

@@ -6,8 +6,9 @@ metadata:
     app: hmpps-product-portfolio-service
 spec:
   ports:
-  - port: 4567
-    name: https
-    targetPort: 4567
+  - port: 8080
+    targetPort: http
+    protocol: TCP
+    name: http
   selector:
     app: hmpps-product-portfolio
