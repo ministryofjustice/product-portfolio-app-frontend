@@ -1,7 +1,7 @@
 version: 2.1
 
 workflows:
-  test-env-vars:
+  build-test-deploy:
     jobs:
       - build:
           context: hmpps-product-portfolio-prod
