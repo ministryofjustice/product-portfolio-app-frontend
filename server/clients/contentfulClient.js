@@ -1,8 +1,9 @@
-const config = require('../config')
+const contentful = require('contentful');
+const config = require('../config');
 
-const contentfulClient = require('contentful').createClient({
+const contentfulClient = contentful.createClient({
   space: config.space,
-  accessToken: config.accessToken
-})
+  accessToken: config.accessToken,
+});
 
-module.exports = contentfulClient
+module.exports = contentfulClient;
