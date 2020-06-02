@@ -5,20 +5,20 @@ const richTextRenderer = require('@contentful/rich-text-html-renderer');
 module.exports = function product({ productService }) {
   const router = express.Router();
   router.get('/product/:id', async (req, res) => {
-    const productEntry = await productService.getEntry(req.params.id);
+    const { fields } = await productService.getEntry(req.params.id);
     console.log('GET product');
-    const outcomes = richTextRenderer.documentToHtmlString(product.fields.productOutcomes);
+    const outcomes = richTextRenderer.documentToHtmlString(fields.productOutcomes);
     const relatedProductsOrServices = richTextRenderer.documentToHtmlString(
-      product.fields.productRelatedProductsOrServices,
+      fields.productRelatedProductsOrServices,
     );
     const exampleFeatures = richTextRenderer.documentToHtmlString(
-      product.fields.productExampleFeatures,
+      fields.productExampleFeatures,
     );
-    productEntry.fields.productOutcomes = outcomes;
-    productEntry.fields.productRelatedProductsOrServices = relatedProductsOrServices;
-    productEntry.fields.productExampleFeatures = exampleFeatures;
+    fields.productOutcomes = outcomes;
+    fields.productRelatedProductsOrServices = relatedProductsOrServices;
+    fields.productExampleFeatures = exampleFeatures;
     res.render('pages/product', {
-      product: productEntry.fields,
+      product: fields,
     });
   });
   return router;
