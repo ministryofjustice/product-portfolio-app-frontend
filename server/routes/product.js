@@ -1,17 +1,25 @@
-const express = require('express')
-const richTextRenderer = require('@contentful/rich-text-html-renderer')
+/* eslint-disable no-console */
+const express = require('express');
+const richTextRenderer = require('@contentful/rich-text-html-renderer');
 
-module.exports = function product ({ productService }) {
-  const router = express.Router()
+module.exports = function product({ productService }) {
+  const router = express.Router();
   router.get('/product/:id', async (req, res) => {
-    const product = await productService.getEntry(req.params.id)
-    console.log('GET product')
-    product.fields.productOutcomes = richTextRenderer.documentToHtmlString(product.fields.productOutcomes)
-    product.fields.productRelatedProductsOrServices = richTextRenderer.documentToHtmlString(product.fields.productRelatedProductsOrServices)
-    product.fields.productExampleFeatures = richTextRenderer.documentToHtmlString(product.fields.productExampleFeatures)
+    const { fields } = await productService.getEntry(req.params.id);
+    console.log('GET product');
+    const outcomes = richTextRenderer.documentToHtmlString(fields.productOutcomes);
+    const relatedProductsOrServices = richTextRenderer.documentToHtmlString(
+      fields.productRelatedProductsOrServices,
+    );
+    const exampleFeatures = richTextRenderer.documentToHtmlString(
+      fields.productExampleFeatures,
+    );
+    fields.productOutcomes = outcomes;
+    fields.productRelatedProductsOrServices = relatedProductsOrServices;
+    fields.productExampleFeatures = exampleFeatures;
     res.render('pages/product', {
-      product: product.fields
-    })
-  })
-  return router
-}
+      product: fields,
+    });
+  });
+  return router;
+};
