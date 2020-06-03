@@ -19,7 +19,7 @@ jobs:
         name: Build application Docker image and push to ECR
         command: |
           $(aws ecr get-login --no-include-email)
-          docker build -t ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio .
+          docker build --build-arg ACCESSTOKEN=${ACCESSTOKEN} --build-arg SPACEID=${SPACEID} -t ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio .
           docker push ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio:latest
     - run:
         name: Authenticate with cluster

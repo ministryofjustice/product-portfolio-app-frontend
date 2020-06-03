@@ -1,5 +1,8 @@
 FROM node:12-alpine
 
+ARG SPACEID
+ARG ACCESSTOKEN
+
 RUN addgroup -g 1001 -S appgroup && \
     adduser -u 1001 -S appuser -G appgroup
 
@@ -7,6 +10,9 @@ RUN apk add --no-cache git
 
 # Create app directory
 WORKDIR /usr/src/app
+
+ENV SPACEID=${SPACEID}
+ENV ACCESSTOKEN=${ACCESSTOKEN}
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
