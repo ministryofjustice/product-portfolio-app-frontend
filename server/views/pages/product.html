@@ -6,7 +6,24 @@
 		<section class="govuk-grid-column-two-thirds">
 			<p class="govuk-body">{{ product.productDescription }}</p>
 			<div class="location govuk-body">Based in <strong>{{ product.teamLocation }}</strong></div>
-			<h2 class="govuk-heading-m">Project history</h2>
+			{% if product.productOutcomes %}
+				<h2 class="govuk-heading-m">Outcomes</h2>
+				<div class="gov-uk-dynamic-content">
+				{{ product.productOutcomes | safe }}
+				</div>
+			{% endif %}
+			{% if product.productRelatedProductsOrServices %}
+				<h2 class="govuk-heading-m">Key Related Products/Services</h2>
+				<div class="gov-uk-dynamic-content">
+				{{ product.productRelatedProductsOrServices | safe }}
+				</div>
+			{% endif %}
+			{% if product.productExampleFeatures %}
+				<h2 class="govuk-heading-m">Example Features</h2>
+				<div class="gov-uk-dynamic-content">
+				{{ product.productExampleFeatures | safe }}
+				</div>
+			{% endif %}
 		</section>
 		<section class="govuk-grid-column-one-third">
 			<div class="phase-circle">
@@ -19,28 +36,6 @@
 			<h3 class="govuk-heading-s">Product Manager</h3>
 			<p class="govuk-body">{{ product.productOwner | default('Not set') }}</p>
 			<hr />
-		</section>
-	</div>
-	<div class="govuk-grid-row">
-		<section class="govuk-grid-column-full">
-		{% if product.productOutcomes %}
-			<h2 class="govuk-heading-m">Outcomes</h2>
-			<div class="gov-uk-dynamic-content">
-			{{ product.productOutcomes | safe }}
-			</div>
-		{% endif %}
-		{% if product.productRelatedProductsOrServices %}
-			<h2 class="govuk-heading-m">Key Related Products/Services</h2>
-			<div class="gov-uk-dynamic-content">
-			{{ product.productRelatedProductsOrServices | safe }}
-			</div>
-		{% endif %}
-		{% if product.productExampleFeatures %}
-			<h2 class="govuk-heading-m">Example Features</h2>
-			<div class="gov-uk-dynamic-content">
-			{{ product.productExampleFeatures | safe }}
-			</div>
-		{% endif %}
 		</section>
 	</div>
 </main>
