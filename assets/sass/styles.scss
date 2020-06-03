@@ -4,6 +4,7 @@ $backlog-colour: govuk-colour("purple");
 $discovery-colour: govuk-colour("bright-purple");
 $alpha-colour: govuk-colour("pink");
 $beta-colour: govuk-colour("orange");
+$public-beta-colour: govuk-colour("brown");
 $live-colour: govuk-colour("light-green");
 $grey: govuk-colour("mid-grey");
 
@@ -30,6 +31,9 @@ $grey: govuk-colour("mid-grey");
 .tag.beta {
   background-color: $beta-colour;
 }
+.tag.public-beta {
+  background-color: $public-beta-colour;
+}
 .tag.live {
   background-color: $live-colour;
 }
@@ -54,8 +58,8 @@ $grey: govuk-colour("mid-grey");
 .txt-beta {
   color: $beta-colour;
 }
-.txt-public {
-  color: $beta-colour;
+.txt-public-beta {
+  color: $public-beta-colour;
 }
 .txt-live {
   color: $live-colour;
@@ -125,8 +129,8 @@ $grey: govuk-colour("mid-grey");
 .border-beta {
   border-color: $beta-colour;
 }
-.border-public {
-  border-color: $beta-colour;
+.border-public-beta {
+  border-color: $public-beta-colour;
 }
 .border-live {
   border-color: $live-colour;
@@ -146,6 +150,9 @@ $grey: govuk-colour("mid-grey");
 }
 .circle.beta {
   background-color: $beta-colour;
+}
+.circle.public-beta {
+  background-color: $public-beta-colour;
 }
 .circle.live {
   background-color: $live-colour;
@@ -191,6 +198,16 @@ $grey: govuk-colour("mid-grey");
   @media (min-width: 640px) {
     float: left;
     width: 20%;
+    min-height: 1px;
+  }
+}
+.column-sixth {
+  box-sizing: border-box;
+  padding: 0 govuk-spacing(3);
+
+  @media (min-width: 640px) {
+    float: left;
+    width: 16.6666%;
     min-height: 1px;
   }
 }

@@ -8,7 +8,7 @@ module.exports = function index({ productService }) {
     const rawProducts = await productService.getEntries('product');
     const rawThemes = await productService.getEntries('themes');
     const products = formatRawProductData(rawProducts);
-    const statuses = ['backlog', 'discovery', 'alpha', 'beta', 'live'];
+    const statuses = ['backlog', 'discovery', 'alpha', 'beta', 'public-beta', 'live'];
     const themes = formatRawThemeData(rawThemes);
     console.log('GET index');
     res.render('pages/index', {
