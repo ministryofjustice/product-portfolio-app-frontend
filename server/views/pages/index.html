@@ -7,24 +7,28 @@
 	<p class="govuk-body govuk-!-margin-top-6">These are all the things we're doing.</p>
 
 	<div class="govuk-grid-row">
-		<section class="column-fifth">
-			<div class="tag backlog govuk-heading-m">Backlog</div>
+		<section class="column-sixth">
+			<div class="tag backlog govuk-heading-s">Backlog</div>
 			<div class="big-number txt-backlog">{{ counts.backlog }}</div>
 		</section>
-		<section class="column-fifth">
-			<div class="tag discovery govuk-heading-m">Discovery</div>
+		<section class="column-sixth">
+			<div class="tag discovery govuk-heading-s">Discovery</div>
 			<div class="big-number txt-discovery">{{ counts.discovery }}</div>
 		</section>
-		<section class="column-fifth">
-			<div class="tag alpha govuk-heading-m">Alpha</div>
+		<section class="column-sixth">
+			<div class="tag alpha govuk-heading-s">Alpha</div>
 			<div class="big-number txt-alpha">{{ counts.alpha }}</div>
 		</section>
-		<section class="column-fifth">
-			<div class="tag beta govuk-heading-m">Beta</div>
+		<section class="column-sixth">
+			<div class="tag private-beta govuk-heading-s">Private Beta</div>
+			<div class="big-number txt-private-beta">{{ counts['private-beta'] }}</div>
+		</section>
+		<section class="column-sixth">
+			<div class="tag beta govuk-heading-s">Public Beta</div>
 			<div class="big-number txt-beta">{{ counts.beta }}</div>
 		</section>
-		<section class="column-fifth">
-			<div class="tag live govuk-heading-m">Live</div>
+		<section class="column-sixth">
+			<div class="tag live govuk-heading-s">Live</div>
 			<div class="big-number txt-live">{{ counts.live }}</div>
 		</section>
 	</div>
@@ -33,7 +37,7 @@
 		<h2 class="heading-large govuk-heading-m service-area">{{ theme.productTheme }}</h2>
 		<div class="govuk-grid-row">
 			{% for status in statuses %}
-				<section class="column-fifth">
+				<section class="column-sixth">
 					<ul class="link-list border-{{status}}">
 						{% for product in products %}
 							{% if (status == product.productStatus) and (theme.productTheme == product.productTheme.fields.productTheme) %}
