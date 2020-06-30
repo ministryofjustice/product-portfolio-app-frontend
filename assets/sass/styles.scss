@@ -176,8 +176,9 @@ $grey: govuk-colour("mid-grey");
   top: 50%;
   left: 0;
   width: 100%;
-  margin-top: -(govuk-spacing(3));
   text-align: center;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
   color: govuk-colour('white');
   @include govuk-font(24, 'bold');
 }
