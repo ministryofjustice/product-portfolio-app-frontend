@@ -32,7 +32,8 @@ jobs:
     - run:
         name: Install new app
         command: |
-          if [ "${CIRCLE_BRANCH}" == "main" ]; then
-            kubectl apply --filename kubectl_deploy --namespace=${K8S_NAMESPACE}
-          fi
+          # if [ "${CIRCLE_BRANCH}" = "bugfix/fix-builds" ]; then
+          # echo "Deploying app"
+          kubectl apply --force --filename kubectl_deploy --namespace=${K8S_NAMESPACE}
+          # fi
           kubectl --namespace=${K8S_NAMESPACE} get pods
