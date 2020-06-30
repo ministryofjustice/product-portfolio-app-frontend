@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 const express = require('express');
 const richTextRenderer = require('@contentful/rich-text-html-renderer');
+const { statuses } = require('../utils');
 
 module.exports = function product({ productService }) {
   const router = express.Router();
@@ -19,6 +20,7 @@ module.exports = function product({ productService }) {
     fields.productExampleFeatures = exampleFeatures;
     res.render('pages/product', {
       product: fields,
+      statuses,
     });
   });
   return router;
