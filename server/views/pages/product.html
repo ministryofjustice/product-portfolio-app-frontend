@@ -28,7 +28,7 @@
 		<section class="govuk-grid-column-one-third">
 			<div class="phase-circle">
 				<p class="circle {{ product.productStatus | lower }}"></p>
-				<p class="circle-label govuk-body">{{ product.productStatus | title }}</p>
+				<p class="circle-label govuk-body">{{ statuses[product.productStatus].formatted }}</p>
 			</div>
 			<hr />
 			<h3 class="govuk-heading-s">Service Owner</h3>
