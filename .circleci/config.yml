@@ -11,7 +11,7 @@ jobs:
     docker:
     - image: ${ECR_ENDPOINT}/cloud-platform/tools:circleci-internal
       environment:
-        IMAGE_URI: ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio:latest
+        IMAGE_URI: ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio:build-${CIRCLE_BUILD_NUM}
     steps:
     - checkout
     - setup_remote_docker
@@ -19,7 +19,10 @@ jobs:
         name: Build application Docker image and push to ECR
         command: |
           $(aws ecr get-login --no-include-email)
-          docker build --build-arg ACCESSTOKEN=${ACCESSTOKEN} --build-arg SPACEID=${SPACEID} -t ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio .
+          docker build --build-arg ACCESSTOKEN=${ACCESSTOKEN} --build-arg SPACEID=${SPACEID} -t hmpps-product-portfolio .
+          docker tag hmpps-product-portfolio ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio:build-${CIRCLE_BUILD_NUM}
+          docker tag hmpps-product-portfolio ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio:latest
+          docker push ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio:build-${CIRCLE_BUILD_NUM}
           docker push ${ECR_ENDPOINT}/hmpps-product-portfolio/hmpps-product-portfolio:latest
     - run:
         name: Authenticate with cluster
@@ -32,7 +35,8 @@ jobs:
     - run:
         name: Install new app
         command: |
-          if [ "${CIRCLE_BRANCH}" == "main" ]; then
-            kubectl apply --filename kubectl_deploy --namespace=${K8S_NAMESPACE}
-          fi
+          # if [ "${CIRCLE_BRANCH}" = "bugfix/fix-builds" ]; then
+          # echo "Deploying app"
+          helm upgrade product-portfolio-app-frontend helm_deploy/product-portfolio-app-frontend --install --namespace=${K8S_NAMESPACE} --set image.tag=build-${CIRCLE_BUILD_NUM}
+          # fi
           kubectl --namespace=${K8S_NAMESPACE} get pods
