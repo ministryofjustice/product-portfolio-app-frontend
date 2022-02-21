@@ -3,7 +3,7 @@ kind: Ingress
 metadata:
   name: hmpps-product-portfolio-ingress
   annotations:
-    external-dns.alpha.kubernetes.io/set-identifier: hmpps-product-portfolio-hmpps-product-portfolio-prod-blue
+    external-dns.alpha.kubernetes.io/set-identifier: hmpps-product-portfolio-ingress-hmpps-product-portfolio-prod-blue
     external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
   tls:
