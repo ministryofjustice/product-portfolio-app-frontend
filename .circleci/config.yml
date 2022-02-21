@@ -33,7 +33,6 @@ jobs:
         name: Install new app
         command: |
           if [ "${CIRCLE_BRANCH}" == "main" ]; then
-            # kubectl apply --filename kubectl_deploy --namespace=${K8S_NAMESPACE}
             kubectl apply --record=false -f kubectl_deploy --namespace=${K8S_NAMESPACE}
           fi
           kubectl --namespace=${K8S_NAMESPACE} get pods
