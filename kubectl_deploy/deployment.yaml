@@ -2,7 +2,10 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: hmpps-product-portfolio
+  labels:
+    app: hmpps-product-portfolio
 spec:
+  replicas: 2
   strategy:
     rollingUpdate:
       maxSurge: 100%
@@ -11,7 +14,6 @@ spec:
   selector:
     matchLabels:
       app: hmpps-product-portfolio
-  replicas: 2
   template:
     metadata:
       labels:
