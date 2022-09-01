@@ -4,7 +4,6 @@ const nunjucks = require('nunjucks');
 const helmet = require('helmet');
 const noCache = require('nocache');
 const compression = require('compression');
-const sassMiddleware = require('node-sass-middleware');
 
 const appConfig = require('./config');
 const cacheMiddleware = require('./middleware/cacheMiddleware');
@@ -33,19 +32,6 @@ module.exports = function createApp({ productService }) { // eslint-disable-line
 
   app.use(express.json());
   app.use(express.urlencoded({ extended: false }));
-  if (!appConfig.isProduction) {
-    app.use(sassMiddleware({
-      src: path.join(__dirname, '../assets/sass'),
-      dest: path.join(__dirname, 'public/stylesheets'),
-      debug: true,
-      prefix: '/public/stylesheets/',
-      outputStyle: 'compressed',
-      includePaths: [
-        'node_modules/govuk-frontend/govuk',
-        'node_modules/govuk-frontend/govuk/assets',
-      ],
-    }));
-  }
 
   app.use('/public', express.static(path.join(__dirname, 'public'), cacheControl));
   app.use('/govuk-frontend', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk'), cacheControl));

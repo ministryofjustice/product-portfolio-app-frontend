@@ -1,4 +1,4 @@
-const ExpressCache = require('express-cache-middleware');
+const ExpressCache = require('./expressCacheMiddleware');
 const cacheManager = require('cache-manager');
 
 const cacheMiddleware = new ExpressCache(
