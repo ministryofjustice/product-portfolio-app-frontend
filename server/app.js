@@ -6,7 +6,6 @@ const noCache = require('nocache');
 const compression = require('compression');
 
 const appConfig = require('./config');
-const cacheMiddleware = require('./middleware/cacheMiddleware');
 const createIndexRouter = require('./routes/index');
 const createProductRouter = require('./routes/product');
 
@@ -36,10 +35,6 @@ module.exports = function createApp({ productService }) { // eslint-disable-line
   app.use('/public', express.static(path.join(__dirname, 'public'), cacheControl));
   app.use('/govuk-frontend', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk'), cacheControl));
   app.use('/assets', express.static(path.join(__dirname, '../node_modules/govuk-frontend/govuk/assets'), cacheControl));
-
-  if (!appConfig.isProduction) {
-    cacheMiddleware.attach(app);
-  }
 
   app.use('/', createIndexRouter({ productService }));
   app.use('/', createProductRouter({ productService }));

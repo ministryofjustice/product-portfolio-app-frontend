@@ -31,12 +31,10 @@
   },
   "dependencies": {
     "@contentful/rich-text-html-renderer": "^15.13.1",
-    "cache-manager": "^4.1.0",
     "compression": "^1.7.4",
     "contentful": "^9.1.34",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
-    "express-mung": "^0.5.1",
     "govuk-frontend": "^4.3.1",
     "helmet": "^6.0.0",
     "nocache": "^3.0.4",
