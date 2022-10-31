@@ -6,14 +6,15 @@ metadata:
     external-dns.alpha.kubernetes.io/set-identifier: hmpps-product-portfolio-ingress-hmpps-product-portfolio-prod-green
     external-dns.alpha.kubernetes.io/aws-weight: "100"
 spec:
+  ingressClassName: default
   tls:
-  - hosts:
-    - hmpps-product-portfolio-prod.apps.live.cloud-platform.service.justice.gov.uk
+    - hosts:
+        - hmpps-product-portfolio-prod.apps.live.cloud-platform.service.justice.gov.uk
   rules:
-  - host: hmpps-product-portfolio-prod.apps.live.cloud-platform.service.justice.gov.uk
-    http:
-      paths:
-      - path: /
-        backend:
-          serviceName: hmpps-product-portfolio-service
-          servicePort: http
+    - host: hmpps-product-portfolio-prod.apps.live.cloud-platform.service.justice.gov.uk
+      http:
+        paths:
+          - path: /
+            backend:
+              serviceName: hmpps-product-portfolio-service
+              servicePort: http
