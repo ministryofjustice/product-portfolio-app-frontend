@@ -16,5 +16,7 @@ spec:
         paths:
           - path: /
             backend:
-              serviceName: hmpps-product-portfolio-service
-              servicePort: http
+              service:
+                name: hmpps-product-portfolio-service
+                port:
+                  name: http
