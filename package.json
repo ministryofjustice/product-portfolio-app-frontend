@@ -39,7 +39,7 @@
     "helmet": "^6.1.5",
     "nocache": "^3.0.4",
     "nodemon": "^2.0.22",
-    "nunjucks": "^3.2.3"
+    "nunjucks": "^3.2.4"
   },
   "nodemonConfig": {
     "restartable": "rs",
